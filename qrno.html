@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR 인식 실패</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;background:#f5f5f5}
+
+    .qrno{position:relative;width:402px;height:874px;background:#FF3333;margin:0 auto;overflow:hidden;}
+
+    .home-indicator-wrap{position:absolute;width:400px;height:34px;left:1px;top:840px;}
+    .home-indicator{position:absolute;width:144px;height:5px;left:calc(50% - 144px/2);bottom:8px;background:#000;border-radius:100px;}
+
+    .status-bar{display:flex;justify-content:center;align-items:center;padding:21px 16px 19px;gap:154px;position:absolute;width:402px;height:62px;top:0;}
+    .time{font-family:'SF Pro';font-weight:590;font-size:17px;color:#000;}
+    .levels{display:flex;gap:7px;}
+    .cellular,.wifi{background:#000;}
+    .cellular{width:19.2px;height:12.23px;}
+    .wifi{width:17.14px;height:12.33px;}
+
+    /* 원형 아이콘 */
+    .icon-wrap{position:absolute;width:134px;height:134px;left:136px;top:314px;}
+    .circle-box{position:absolute;left:8.33%;right:8.33%;top:8.33%;bottom:8.33%;background:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.25);}
+    .symbol-x{font-weight:800;font-size:72px;color:#FF3333;transform:translateY(-2px);}
+
+    /* 텍스트 */
+    .text-wrap{position:absolute;left:82px;top:456px;text-align:center;color:#FFF;text-shadow:0 2px 4px rgba(0,0,0,.25);}
+    .txt-strong{font-weight:700;font-size:24px;}
+    .txt-sub{font-weight:400;font-size:16px;margin-top:4px;}
+
+    .btn-retry,.btn-home{position:absolute;width:160px;height:48px;bottom:100px;background:transparent;border:none;cursor:pointer;}
+    .btn-retry{left:30px;}
+    .btn-home{right:30px;}
+  </style>
+</head>
+<body>
+  <div class="qrno">
+    <div class="status-bar">
+      <div class="time" id="currentTime">9:41</div>
+      <div class="levels"><div class="cellular"></div><div class="wifi"></div></div>
+    </div>
+
+    <div class="icon-wrap">
+      <div class="circle-box"><span class="symbol-x">X</span></div>
+    </div>
+
+    <div class="text-wrap">
+      <div class="txt-strong">QR 코드 스캔 확인 불가능!</div>
+      <div class="txt-sub">다시 시도해주세요.</div>
+    </div>
+
+    <div class="home-indicator-wrap"><div class="home-indicator"></div></div>
+    <button class="btn-retry" onclick="goRetry()"></button>
+    <button class="btn-home" onclick="goHome()"></button>
+  </div>
+
+  <script>
+    function updateTime(){const n=new Date();const h=String(n.getHours()).padStart(2,'0');const m=String(n.getMinutes()).padStart(2,'0');document.getElementById('currentTime').textContent=`${h}:${m}`;}
+    updateTime();setInterval(updateTime,60000);
+    function goRetry(){window.location.href='qrcheck.html';}
+    function goHome(){window.location.href='home.html';}
+  </script>
+</body>
+</html>

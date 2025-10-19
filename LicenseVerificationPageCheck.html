@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>면허증 확인</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .license-check {
+            position: relative;
+            width: 402px;
+            height: 874px;
+            background: #FFFFFF;
+            margin: 0 auto;
+        }
+
+        .background-img {
+            position: absolute;
+            width: 491px;
+            height: 873px;
+            left: -45px;
+            top: 0px;
+            background: linear-gradient(135deg, rgba(78, 55, 255, 0.1) 0%, rgba(166, 201, 255, 0.1) 100%);
+        }
+
+        .overlay {
+            position: absolute;
+            width: 402px;
+            height: 874px;
+            left: 0px;
+            top: 0px;
+            background: rgba(157, 157, 157, 0.5);
+        }
+
+        .status-bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 21px 16px 19px;
+            gap: 154px;
+            position: absolute;
+            width: 402px;
+            height: 62px;
+            left: 0px;
+            top: 0px;
+            z-index: 10;
+        }
+
+        .time-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 2px 0px 0px;
+            gap: 10px;
+            width: 108px;
+            height: 22px;
+            flex: none;
+            order: 0;
+            flex-grow: 1;
+        }
+
+        .time {
+            width: 37px;
+            height: 22px;
+            font-family: 'SF Pro';
+            font-style: normal;
+            font-weight: 590;
+            font-size: 17px;
+            line-height: 22px;
+            text-align: center;
+            color: #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .levels {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 1px 0px 0px;
+            gap: 7px;
+            width: 108px;
+            height: 22px;
+            flex: none;
+            order: 1;
+            flex-grow: 1;
+        }
+
+        .cellular {
+            width: 19.2px;
+            height: 12.23px;
+            background: #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .wifi {
+            width: 17.14px;
+            height: 12.33px;
+            background: #000000;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .battery {
+            width: 27.33px;
+            height: 13px;
+            flex: none;
+            order: 2;
+            flex-grow: 0;
+            position: relative;
+        }
+
+        .battery-border {
+            box-sizing: border-box;
+            position: absolute;
+            width: 25px;
+            left: calc(50% - 25px/2 + 24.01px);
+            top: 22.73%;
+            bottom: 18.18%;
+            mix-blend-mode: normal;
+            opacity: 0.35;
+            border: 1px solid #000000;
+            border-radius: 4.3px;
+        }
+
+        .battery-cap {
+            position: absolute;
+            width: 1.33px;
+            left: calc(50% - 1.33px/2 + 38.17px);
+            top: 44.46%;
+            bottom: 37.01%;
+            background: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.4;
+        }
+
+        .battery-capacity {
+            position: absolute;
+            width: 21px;
+            left: calc(50% - 21px/2 + 24.01px);
+            top: 31.82%;
+            bottom: 27.27%;
+            background: #000000;
+            border-radius: 2.5px;
+        }
+
+        .title-badge {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 27px 79px;
+            gap: 10px;
+            position: absolute;
+            width: 362px;
+            height: 76px;
+            left: 20px;
+            top: 62px;
+            background: #4E37FF;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10000px;
+            z-index: 10;
+        }
+
+        .title-text {
+            width: 240px;
+            height: 22px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 22px;
+            text-align: center;
+            color: #FFFFFF;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .guide-text {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            gap: 10px;
+            position: absolute;
+            width: 216px;
+            height: 25px;
+            left: 93px;
+            top: 307px;
+            z-index: 10;
+        }
+
+        .guide-text span {
+            width: 192px;
+            height: 22px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: #4E37FF;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .scan-frame {
+            box-sizing: border-box;
+            position: absolute;
+            width: 310px;
+            height: 201px;
+            left: 46px;
+            top: 336px;
+            border: 2px dashed #4E37FF;
+            z-index: 10;
+        }
+
+        .home-indicator-wrap {
+            position: absolute;
+            width: 400px;
+            height: 34px;
+            left: 1px;
+            top: 840px;
+            z-index: 10;
+        }
+
+        .home-indicator {
+            position: absolute;
+            width: 144px;
+            height: 5px;
+            left: calc(50% - 144px/2);
+            bottom: 8px;
+            background: #000000;
+            border-radius: 100px;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="license-check">
+        <div class="background-img"></div>
+        <div class="overlay"></div>
+
+        <div class="status-bar">
+            <div class="time-section">
+                <div class="time" id="currentTime">9:41</div>
+            </div>
+            <div class="levels">
+                <div class="cellular"></div>
+                <div class="wifi"></div>
+                <div class="battery">
+                    <div class="battery-border"></div>
+                    <div class="battery-cap"></div>
+                    <div class="battery-capacity"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-badge">
+            <div class="title-text">지금부터 면허증을 확인할게요.</div>
+        </div>
+
+        <div class="guide-text">
+            <span>프레임에 면허증을 맞춰주세요.</span>
+        </div>
+
+        <div class="scan-frame"></div>
+
+        <div class="home-indicator-wrap">
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        // 3초 후 면허증 미인식 페이지로 이동 (시뮬레이션)
+        setTimeout(() => {
+            window.location.href = 'LicenseVerificationPageno.html';
+        }, 3000);
+    </script>
+</body>
+</html>

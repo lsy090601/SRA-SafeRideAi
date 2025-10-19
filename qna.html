@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>자주 묻는 질문</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;background:#f5f5f5}
+    .qna { position:relative; width:402px; height:874px; background:#FFFFFF; margin:0 auto; }
+
+    /* frame (상단 보라 헤더) */
+    .frame { position:absolute; width:402px; height:126px; left:0; top:0; background:#4E37FF; box-shadow:0 4px 4px rgba(0,0,0,.25); border-radius:0 0 5px 5px; }
+
+    /* 자주 묻는 질문 타이틀 */
+    .title { position:absolute; width:136px; height:22px; left:132px; top:72px; font-weight:600; font-size:24px; line-height:22px; text-align:center; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,.25); }
+
+    /* 좌상단 뒤로가기 버튼 */
+    .back-btn { position:absolute; left:20px; top:62px; width:76px; height:76px; background:#4E37FF; border:none; border-radius:1000px; box-shadow:0 2px 4px rgba(0,0,0,.25); cursor:pointer; }
+    .back-btn span { position:absolute; left:0; right:0; top:0; bottom:0; display:flex; align-items:center; justify-content:center; width:40px; height:40px; margin:auto; font-size:28px; color:#FFFFFF; user-select:none; }
+
+    /* Home Indicator */
+    .home-indicator-wrap { position:absolute; width:400px; height:34px; left:1px; top:840px; }
+    .home-indicator { position:absolute; width:144px; height:5px; left:calc(50% - 144px/2); bottom:8px; background:#000; border-radius:100px; transform:matrix(-1,0,0,1,0,0); }
+
+    /* Status bar - iPhone */
+    .status-bar { display:flex; flex-direction:row; justify-content:center; align-items:center; padding:21px 16px 19px; gap:154px; position:absolute; width:402px; height:62px; left:0; top:0; }
+    .time-wrap { display:flex; flex-direction:row; justify-content:center; align-items:center; padding:2px 0 0; gap:10px; width:108px; height:22px; }
+    .time { width:37px; height:22px; font-family:'SF Pro'; font-weight:590; font-size:17px; line-height:22px; text-align:center; color:#000; }
+    .levels { display:flex; flex-direction:row; justify-content:center; align-items:center; padding:1px 0 0; gap:7px; width:108px; height:22px; }
+    .cellular { width:19.2px; height:12.23px; background:#000; }
+    .wifi { width:17.14px; height:12.33px; background:#000; }
+    .battery { position:relative; width:27.33px; height:13px; }
+    .battery-border { box-sizing:border-box; position:absolute; width:25px; left:calc(50% - 25px/2 + 24.01px); top:22.73%; bottom:18.18%; opacity:.35; border:1px solid #000; border-radius:4.3px; }
+    .battery-cap { position:absolute; width:1.33px; left:calc(50% - 1.33px/2 + 38.17px); top:44.46%; bottom:37.01%; background:#000; opacity:.4; }
+    .battery-capacity { position:absolute; width:21px; left:calc(50% - 21px/2 + 24.01px); top:31.82%; bottom:27.27%; background:#000; border-radius:2.5px; }
+
+    /* Q 카드 공통 */
+    .card { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:6px 10px; position:absolute; background:#ECF2FF; box-shadow:0 2px 4px rgba(0,0,0,.25); border-radius:6px; }
+    .q { font-weight:500; font-size:16px; line-height:22px; color:#000; margin-bottom:4px; }
+    .a { font-weight:400; font-size:13px; line-height:22px; color:#767676; }
+
+    /* Q1 */
+    #q1 { width:377px; height:100px; left:12px; top:158px; }
+    /* Q2 */
+    #q2 { width:377px; height:100px; left:12px; top:278px; }
+    /* Q3 */
+    #q3 { width:377px; height:188px; left:12px; top:398px; }
+    /* Q4 */
+    #q4 { width:377px; height:78px; left:12px; top:606px; }
+    /* Q5 */
+    #q5 { width:377px; height:100px; left:12px; top:704px; }
+  </style>
+</head>
+<body>
+  <div class="qna">
+    <div class="frame"></div>
+    <div class="status-bar">
+      <div class="time-wrap"><div class="time" id="currentTime">9:41</div></div>
+      <div class="levels">
+        <div class="cellular"></div>
+        <div class="wifi"></div>
+        <div class="battery">
+          <div class="battery-border"></div>
+          <div class="battery-cap"></div>
+          <div class="battery-capacity"></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-btn" onclick="goHome()" aria-label="뒤로가기"><span>〈</span></button>
+    <div class="title">자주 묻는 질문</div>
+
+    <!-- Q1 -->
+    <article id="q1" class="card">
+      <div class="q">Q1. 헬멧을 깜빡하고 안 가져왔어요. 그래도 탈 수 있나요?</div>
+      <div class="a">A. 안전을 위해 헬멧이 인식되지 않으면 킥보드를 이용할 수 없습니다. 가까운 대여소에서 헬멧을 대여해 이용해 주세요.</div>
+    </article>
+
+    <!-- Q2 -->
+    <article id="q2" class="card">
+      <div class="q">Q2. 개인정보는 안전하게 보호되나요?</div>
+      <div class="a">A. 네! 헬멧 착용이 확인된 사진 데이터는 저장되지 않습니다. 헬멧 인식은 실시간 처리되며, 얼굴 정보는 보관되지 않습니다.</div>
+    </article>
+
+    <!-- Q3 -->
+    <article id="q3" class="card">
+      <div class="q">Q3. 앱이 작동하지 않거나 오류가 날 때는 어떻게 해결해야 하나요?</div>
+      <div class="a">A. 1) 앱 완전 종료 후 재실행 2) 카메라 권한 확인 3) 최신 버전 업데이트. 그래도 해결되지 않으면 문의하기/고객센터로 오류 내용을 알려주세요.</div>
+    </article>
+
+    <!-- Q4 -->
+    <article id="q4" class="card">
+      <div class="q">Q4. 앱에서 현재 위치가 잘못 표시돼요.</div>
+      <div class="a">A. GPS가 약한 지역(터널/실내 등)에서는 오차가 생길 수 있습니다. 잠시 후 재시도하거나 권한이 허용되어 있는지 확인해주세요.</div>
+    </article>
+
+    <!-- Q5 -->
+    <article id="q5" class="card">
+      <div class="q">Q5. 앱 알림이 너무 자주 와요. 끌 수 있나요?</div>
+      <div class="a">A. 홈 상단 [메뉴] → [설정] → [알림 관리]에서 홍보 알림만 끄기 또는 전체 해제가 가능합니다. (안전 알림은 해제 불가)</div>
+    </article>
+
+    <div class="home-indicator-wrap"><div class="home-indicator"></div></div>
+  </div>
+
+  <script>
+    function goHome(){ window.location.href = 'home.html'; }
+    function updateTime(){
+      const now=new Date();
+      const h=String(now.getHours()).padStart(2,'0');
+      const m=String(now.getMinutes()).padStart(2,'0');
+      document.getElementById('currentTime').textContent = `${h}:${m}`;
+    }
+    updateTime(); setInterval(updateTime, 60000);
+  </script>
+</body>
+</html>

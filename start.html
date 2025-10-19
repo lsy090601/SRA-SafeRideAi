@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRA Start</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #4E37FF;
+      width: 402px;
+      height: 874px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* 로고 텍스트 */
+    .logo {
+      position: absolute;
+      width: 108px;
+      height: 85px;
+      left: 147px;
+      top: 394px;
+      font-family: 'Kdam Thmor Pro', sans-serif;
+      font-weight: 400;
+      font-size: 55px;
+      line-height: 85px;
+      color: #FFFFFF;
+      text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    /* 상태바 */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 21px 16px 19px;
+      position: absolute;
+      width: 402px;
+      height: 62px;
+      left: 0;
+      top: 0;
+    }
+
+    .time {
+      font-family: 'SF Pro', sans-serif;
+      font-weight: 590;
+      font-size: 17px;
+      line-height: 22px;
+      color: #000000;
+    }
+
+    .levels {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .cellular {
+      width: 19.2px;
+      height: 12.23px;
+      background: #000000;
+    }
+
+    .wifi {
+      width: 17.14px;
+      height: 12.33px;
+      background: #000000;
+    }
+
+    .battery {
+      position: relative;
+      width: 27.33px;
+      height: 13px;
+    }
+
+    .battery-border {
+      position: absolute;
+      width: 25px;
+      border: 1px solid #000000;
+      border-radius: 4.3px;
+      opacity: 0.35;
+      left: 0;
+      top: 0;
+    }
+
+    .battery-capacity {
+      position: absolute;
+      width: 21px;
+      height: 8px;
+      background: #000000;
+      border-radius: 2.5px;
+      top: 2px;
+      left: 2px;
+    }
+
+    /* 홈 인디케이터 */
+    .home-indicator-wrap {
+      position: absolute;
+      width: 400px;
+      height: 34px;
+      left: 1px;
+      top: 840px;
+    }
+
+    .home-indicator {
+      position: absolute;
+      width: 144px;
+      height: 5px;
+      left: calc(50% - 144px/2);
+      bottom: 8px;
+      background: #000000;
+      border-radius: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <div class="time" id="currentTime">9:41</div>
+    <div class="levels">
+      <div class="cellular"></div>
+      <div class="wifi"></div>
+      <div class="battery">
+        <div class="battery-border"></div>
+        <div class="battery-capacity"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">SRA</div>
+
+  <div class="home-indicator-wrap">
+    <div class="home-indicator"></div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('currentTime').textContent = `${h}:${m}`;
+    }
+    updateTime();
+    setInterval(updateTime, 60000);
+  </script>
+</body>
+</html>

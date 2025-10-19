@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .userprofile {
+            position: relative;
+            width: 402px;
+            height: 874px;
+            background: #FFFFFF;
+            margin: 0 auto;
+        }
+
+        .status-bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 21px 16px 19px;
+            gap: 154px;
+            position: absolute;
+            width: 402px;
+            height: 62px;
+            left: 0px;
+            top: 0px;
+        }
+
+        .time-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 2px 0px 0px;
+            gap: 10px;
+            width: 108px;
+            height: 22px;
+            flex: none;
+            order: 0;
+            flex-grow: 1;
+        }
+
+        .time {
+            width: 37px;
+            height: 22px;
+            font-family: 'SF Pro';
+            font-style: normal;
+            font-weight: 590;
+            font-size: 17px;
+            line-height: 22px;
+            text-align: center;
+            color: #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .levels {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 1px 0px 0px;
+            gap: 7px;
+            width: 108px;
+            height: 22px;
+            flex: none;
+            order: 1;
+            flex-grow: 1;
+        }
+
+        .cellular {
+            width: 19.2px;
+            height: 12.23px;
+            background: #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .wifi {
+            width: 17.14px;
+            height: 12.33px;
+            background: #000000;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .battery {
+            width: 27.33px;
+            height: 13px;
+            flex: none;
+            order: 2;
+            flex-grow: 0;
+            position: relative;
+        }
+
+        .battery-border {
+            box-sizing: border-box;
+            position: absolute;
+            width: 25px;
+            left: calc(50% - 25px/2 + 24.01px);
+            top: 22.73%;
+            bottom: 18.18%;
+            mix-blend-mode: normal;
+            opacity: 0.35;
+            border: 1px solid #000000;
+            border-radius: 4.3px;
+        }
+
+        .battery-cap {
+            position: absolute;
+            width: 1.33px;
+            left: calc(50% - 1.33px/2 + 38.17px);
+            top: 44.46%;
+            bottom: 37.01%;
+            background: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.4;
+        }
+
+        .battery-capacity {
+            position: absolute;
+            width: 21px;
+            left: calc(50% - 21px/2 + 24.01px);
+            top: 31.82%;
+            bottom: 27.27%;
+            background: #000000;
+            border-radius: 2.5px;
+        }
+
+        .profile-card {
+            position: absolute;
+            width: 356px;
+            height: 256px;
+            left: 23px;
+            top: 64px;
+            background: #F4F4F4;
+            border-radius: 10px;
+        }
+
+        .profile-photo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10px;
+            gap: 10px;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            left: 138px;
+            top: 15px;
+            background: #ECF2FF;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 1000px;
+        }
+
+        .profile-icon {
+            width: 60px;
+            height: 60px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .profile-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .name-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            gap: 5px;
+            position: absolute;
+            width: 57px;
+            height: 16px;
+            left: 151px;
+            top: 104px;
+        }
+
+        .name-text {
+            width: 39px;
+            height: 16px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #000000;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .edit-icon {
+            width: 13px;
+            height: 13px;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .bottom-nav {
+            position: absolute;
+            width: 380px;
+            height: 65px;
+            left: 11px;
+            top: 763px;
+            filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.15));
+        }
+
+        .nav-bg {
+            position: absolute;
+            left: 0%;
+            right: 0%;
+            top: 0%;
+            bottom: 0%;
+            background: #ECF2FF;
+            border-radius: 50px;
+        }
+
+        .nav-home {
+            position: absolute;
+            left: 13.16%;
+            right: 69.74%;
+            top: 0%;
+            bottom: 0%;
+            background: #ECF2FF;
+            cursor: pointer;
+        }
+
+        .nav-home-icon {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            left: 14px;
+            top: 6px;
+        }
+
+        .nav-home-text {
+            position: absolute;
+            width: 29px;
+            height: 16px;
+            left: 18px;
+            top: 42px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 16px;
+            text-align: center;
+            color: #4E37FF;
+            text-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-qr {
+            position: absolute;
+            width: 54px;
+            height: 54px;
+            left: 163px;
+            top: 3px;
+            background: #4E37FF;
+            box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.22);
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        .nav-qr-icon {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            left: 9px;
+            top: 4px;
+        }
+
+        .nav-qr-text {
+            position: absolute;
+            width: 34px;
+            height: 16px;
+            left: 10px;
+            top: 35px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 16px;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-profile {
+            box-sizing: border-box;
+            position: absolute;
+            left: 69.74%;
+            right: 13.16%;
+            top: 0%;
+            bottom: 0%;
+            background: #ECF2FF;
+            border-bottom: 1px solid #4E37FF;
+        }
+
+        .nav-profile-icon {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            left: 14px;
+            top: 6px;
+        }
+
+        .nav-profile-text {
+            position: absolute;
+            width: 26px;
+            height: 16px;
+            left: 19px;
+            top: 42px;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 16px;
+            text-align: center;
+            color: #4E37FF;
+            text-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.25);
+        }
+
+        .home-indicator-wrap {
+            position: absolute;
+            width: 400px;
+            height: 34px;
+            left: 1px;
+            top: 840px;
+        }
+
+        .home-indicator {
+            position: absolute;
+            width: 144px;
+            height: 5px;
+            left: calc(50% - 144px/2);
+            bottom: 8px;
+            background: #000000;
+            border-radius: 100px;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="userprofile">
+        <div class="status-bar">
+            <div class="time-section">
+                <div class="time" id="currentTime">9:41</div>
+            </div>
+            <div class="levels">
+                <div class="cellular"></div>
+                <div class="wifi"></div>
+                <div class="battery">
+                    <div class="battery-border"></div>
+                    <div class="battery-cap"></div>
+                    <div class="battery-capacity"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-photo">
+                <div class="profile-icon">
+                    <svg viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="20" r="10" fill="#4E37FF"/>
+                        <path d="M15 50c0-8.3 6.7-15 15-15s15 6.7 15 15" fill="#4E37FF"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="name-section">
+                <span class="name-text">문연경</span>
+                <div class="edit-icon">
+                    <svg viewBox="0 0 13 13" fill="none">
+                        <path d="M1 12L4 9L9 4L12 1L11 4L6 9L3 12L1 12Z" stroke="#000000" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <div class="nav-bg"></div>
+            <div class="nav-home" onclick="goToHome()">
+                <div class="nav-home-icon">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path d="M18 10l-12 10h4v10h6v-8h4v8h6V20h4z" fill="#4E37FF"/>
+                    </svg>
+                </div>
+                <div class="nav-home-text">홈 화면</div>
+            </div>
+            <div class="nav-qr" onclick="goToQrScan()">
+                <div class="nav-qr-icon">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <rect x="6" y="6" width="10" height="10" stroke="#FFFFFF" stroke-width="2"/>
+                        <rect x="20" y="6" width="10" height="10" stroke="#FFFFFF" stroke-width="2"/>
+                        <rect x="6" y="20" width="10" height="10" stroke="#FFFFFF" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="nav-qr-text">QR 스캔</div>
+            </div>
+            <div class="nav-profile">
+                <div class="nav-profile-icon">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="13" r="5" fill="#4E37FF"/>
+                        <path d="M10 28c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#4E37FF"/>
+                    </svg>
+                </div>
+                <div class="nav-profile-text">프로필</div>
+            </div>
+        </div>
+
+        <div class="home-indicator-wrap">
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goToQrScan() {
+            window.location.href = 'qrcheck.html';
+        }
+    </script>
+</body>
+</html>
